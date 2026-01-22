@@ -1,16 +1,16 @@
 package com.company;
 
-import com.company.MyApplication;
 import com.company.controllers.UserController;
-import com.company.controllers.interfaces.IUserController;
 import com.company.data.PostgresDB;
 import com.company.data.interfaces.IDB;
-import com.company.repositories.UserRepository;
 import com.company.repositories.BookRepository;
+import com.company.repositories.UserRepository;
 import com.company.repositories.interfaces.IUserRepository;
 
 public class Main {
+
     public static void main(String[] args) {
+
         IDB db = new PostgresDB(
                 "jdbc:postgresql://localhost:5432",
                 "postgres",
@@ -20,11 +20,10 @@ public class Main {
 
         IUserRepository userRepo = new UserRepository(db);
         BookRepository bookRepo = new BookRepository(db);
-        UserController controller = new UserController(userRepo,bookRepo); {
-        }
-        MyApplication app = new MyApplication( controller);
+
+        UserController controller = new UserController(userRepo, bookRepo);
+        MyApplication app = new MyApplication(controller);
+
         app.start();
-        db.close();
     }
 }
-
